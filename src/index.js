@@ -12,7 +12,7 @@ import * as serviceWorker from "./serviceWorker";
 const middleware = [thunk, logger];
 
 const store = createStore(rootReducer, applyMiddleware(...middleware));
-console.log("Store: ", store);
+console.log("This is store in src/index.js: ", store);
 
 ReactDOM.render(
   <Provider store={store}>
