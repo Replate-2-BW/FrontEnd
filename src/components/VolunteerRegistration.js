@@ -3,6 +3,10 @@ import { Formik, Form, Field, useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
+// This component is to allow volunteers to create an account with Replate. Volunteers are required to fill out the following fields:
+// username, password, and phoneNumber
+// bizName/Organization is an optional field in case the volunteer is working directly for an organization
+
 // This code is for form validation through Yup. 
 const RegistrationSchema = Yup.object().shape({
   username: Yup.string()
@@ -11,6 +15,7 @@ const RegistrationSchema = Yup.object().shape({
     .required("Required")
 });
 
+// This code contains the state, submit handler, and the registration form itself
 export default function Registration() {
   const formik = useFormik({
     initialValues: {
