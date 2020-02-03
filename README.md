@@ -75,8 +75,8 @@ Do you own a business? Would you like to make a big impact in your community? Re
 
 
 #### What do the top 3 similar apps do for their users?
-1. Olio– When it comes to wasted food, Olio is at the top of its game. Instead of local bakeries discarding products like bread and bagels, they are picked up and posted on Olio. Started in 2015, the project has 450,000 participants in 32 countries! A third of those who use the app fall under the poverty line, which makes it philanthropic and food-waste friendly!
-2. Food Rescue US–Food Rescue US is another great app that reduces food waste in the United States. Luckily, this app makes it very easy for those who donate, deliver and provide food to find each other! If you’re a restaurant or grocer, you can list the food you’d like to donate. Then, a driver can deliver it to an agency or food pantry that’s looking for that item!
+1. Olio – When it comes to wasted food, Olio is at the top of its game. Instead of local bakeries discarding products like bread and bagels, they are picked up and posted on Olio. Started in 2015, the project has 450,000 participants in 32 countries! A third of those who use the app fall under the poverty line, which makes it philanthropic and food-waste friendly!
+2. Food Rescue US – Food Rescue US is another great app that reduces food waste in the United States. Luckily, this app makes it very easy for those who donate, deliver and provide food to find each other! If you’re a restaurant or grocer, you can list the food you’d like to donate. Then, a driver can deliver it to an agency or food pantry that’s looking for that item!
 3. La Piat – If you’re looking for a meal at the end of the day, La Piat is a food sharing app Canada can be proud of! Based in Toronto, this app values regulation so all chefs have to have their Ontario Food Handling Certificate. All you have to do is peruse the pictures of available food. Once you pick your item, it will be delivered to you!
 
 
@@ -89,7 +89,7 @@ Do you own a business? Would you like to make a big impact in your community? Re
 ##### What is the URL to your wireframes?
 https://www.figma.com/file/LD7rvCTjo8paAWtYdUDC34/Replate---Dev-File---Trevor-Swanton-UX10?node-id=10%3A616
 
-  * Tool to pick with : Adobe Palette Picker
+  * Tool to pick with : TBD
   * Color palette choice: See figma...
   * Type system: TBD
   * Tool to reference: TBD
@@ -136,7 +136,7 @@ https://www.figma.com/file/LD7rvCTjo8paAWtYdUDC34/Replate---Dev-File---Trevor-Sw
   * The app/marketing need to clearly communicate the purpose of the app is coordinating transportation of excess quality food from businesses to organizations willing to distribute said food to those in the community who need it.
 
 - Have you validated the problem and your solution with your target audience? How?
-  *  
+  * N/A
 
 
 #### Research
@@ -156,17 +156,17 @@ This is the “bread and butter” of the app, this is what makes your app yours
 
 - User can create an account as either a `volunteer` or a `business`
 - Authenticated `business` can:
- * create, read, update, and delete their business profile (username, business name, business address, phone number)
- * create a pickup request (type of food item, amount of food by count/weight, preferred pickup time)
- * cancel/delete or update a pickup request
- * view the profile of the volunteer who claims a pickup request
+  * create, read, update, and delete their business profile (username, business name, business address, phone number)
+  * create a pickup request (type of food item, amount of food by count/weight, preferred pickup time)
+  * cancel/delete or update a pickup request
+  * view the profile of the volunteer who claims a pickup request
 - Authenticated `volunteer` can:
- * create, read, update, and delete a volunteer profile (username, volunteer's name, phone number)
- * view a list of unassigned pickup requests that have been created by all business users
- * select a pending pickup and be presented with a detail view
- * accept/claim a pending pickup and it will be added to volunteer's list of assigned pickups
- * cancel/delete a claimed pickup and it will be removed from the assigned pickup list and added back to the pending pickup list
- * mark an assigned pickup as completed
+  * create, read, update, and delete a volunteer profile (username, volunteer's name, phone number)
+  * view a list of unassigned pickup requests that have been created by all business users
+  * select a pending pickup and be presented with a detail view
+  * accept/claim a pending pickup and it will be added to volunteer's list of assigned pickups
+  * cancel/delete a claimed pickup and it will be removed from the assigned pickup list and added back to the pending pickup list
+  * mark an assigned pickup as completed
 
 
 ## Credits
