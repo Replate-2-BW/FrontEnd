@@ -1,43 +1,36 @@
 import React, { useState } from "react";
-import { useFormik, Button, FormGroup, FormControl, ControlLabel } from 'formik';
-import "./Login.css";
+import { Formik, useFormik, Button, FormGroup, FormControl, ControlLabel } from 'formik';
+import axios from "axios";
 
-export default function Login(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
+export default function Login() {
+  const formik = useFormik({
+    initialValues: {
+        username: "",
+        password: "",
+},
+onSubmit: values => {
+    console.log("Values here: ", values);
+    alert(JSON.stringify(values, null, 2));
+    axios
+        .post("https://replate-2.herokuapp.com/api/register", values)
+        .then(res => console.log("This is axios.post.then res: ", res))
+        .catch(err => console.log("This is axios.post.catch err: ", err))
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+ }
+});
 
-  return (
-    <div className="Login">
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
-            autoFocus
-            type="username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
-        </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
-          Login
-        </Button>
-      </form>
+return (
+    <div>
+        <h2> Welcome to replate</h2>
+        <formik onSubmit={values => console.log(values)}>
+            <Form onSubmit={formik.handleSubmit}>
+                <div>
+
+                </div>
+            </Form>
+
+
+        </formik>
     </div>
-  );
-}
+);
