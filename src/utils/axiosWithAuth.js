@@ -8,3 +8,5 @@ export const axiosWithAuth = () => {
     }
   });
 };
+
+// authorization: localStorage.getItem("token")
