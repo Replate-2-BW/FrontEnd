@@ -107,7 +107,7 @@ https://www.figma.com/file/LD7rvCTjo8paAWtYdUDC34/Replate---Dev-File---Trevor-Sw
 - What 3rd party frameworks/libraries did you use?
 
 **Frontend:**
-- Axios
+- Axios for API
 - React
 - React-router
 - Formik
@@ -178,7 +178,7 @@ Elysia Gabe https://github.com/elysiagabe <br>
 
 ### Frontend
 Erik Ahlgren (senior react dev): https://github.com/thericktastic <br>
-Humayan Rashid (junior react dev): https://github.com/itshum <br>
+Humayun Rashid (junior react dev): https://github.com/itshum <br>
 
 ### Backend
 Russ https://github.com/newbi462 <br>
