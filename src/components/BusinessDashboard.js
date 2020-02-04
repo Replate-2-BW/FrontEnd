@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+// components
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 // This component displays the dashboard for the business users.
 // This is the first component the user sees after registering/logging in.
@@ -6,11 +9,32 @@ import React from "react";
 // Profile, create-a-pickup-request, and the user's created pickup requests
 
 const BusinessDashboard = props => {
-    return (
-        <div>
-        <h1>Replate</h1>
-        <h3>Pick-Ups</h3>
-        
-        </div>
-    )
-}
+  const [pickups, setPickups] = useState([]);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/auth/pickup/:id/biz")
+      .then(res => {
+        console.log(
+          "This is axiosWithAuth.get.then res in BusinessDashboard: ",
+          res
+        );
+      })
+      .catch(err => {
+        console.log(
+          "This is axiosWithAuth.get.catch err in BusinessDashboard: ",
+          err
+        );
+      });
+  }, []);
+
+  return (
+    <div>
+      <h1>Replate</h1>
+      <h3>Pick-Ups</h3>
+      <div></div>
+    </div>
+  );
+};
+
+export default BusinessDashboard;

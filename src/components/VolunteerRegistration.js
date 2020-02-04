@@ -44,7 +44,7 @@ export default function Registration() {
       >
         <Form onSubmit={formik.handleSubmit}>
           <div>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Username: </label>
             <Field
               id="username"
               type="text"
@@ -54,7 +54,7 @@ export default function Registration() {
             />
           </div>
           <div>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password: </label>
             <Field
               id="password"
               type="password"
@@ -64,7 +64,7 @@ export default function Registration() {
             />
           </div>
           <div>
-            <label htmlFor="phoneNumber">Phone Number</label>
+            <label htmlFor="phoneNumber">Phone Number: </label>
             <Field
               id="phoneNumber"
               type="text"
@@ -74,7 +74,7 @@ export default function Registration() {
             />
           </div>
           <div>
-            <label htmlFor="bizName">Organization</label>
+            <label htmlFor="bizName">Organization: </label>
             <Field
               id="bizName"
               type="text"
