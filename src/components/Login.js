@@ -1,26 +1,36 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Formik, useFormik, Button, FormGroup, FormControl, ControlLabel } from 'formik';
 import axios from "axios";
 
-export default function Login(props) {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
 
-    function validateForm() {
-        return username.length > 0 && password > 0;
-    }
+export default function Login() {
+  const formik = useFormik({
+    initialValues: {
+        username: "",
+        password: "",
+},
+onSubmit: values => {
+    console.log("Values here: ", values);
+    alert(JSON.stringify(values, null, 2));
+    axios
+        .post("https://replate-2.herokuapp.com/api/register", values)
+        .then(res => console.log("This is axios.post.then res: ", res))
+        .catch(err => console.log("This is axios.post.catch err: ", err))
 
-    function handleSubmit(e) {
-        e.preventDefault();
-    }
+ }
+});
 
-    return (
-        <div className="Login">
-        <form onSubmit={handleSubmit}>
-        <FormGroup controlId="username" bsSize="large">
-        
-        </FormGroup>
-        </form>
-        </div>
-    )
-}
+return (
+    <div>
+        <h2> Welcome to replate</h2>
+        <formik onSubmit={values => console.log(values)}>
+            <Form onSubmit={formik.handleSubmit}>
+                <div>
+
+                </div>
+            </Form>
+
+
+        </formik>
+    </div>
+);
