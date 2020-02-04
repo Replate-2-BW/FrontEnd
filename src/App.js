@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import VolunteerRegistration from "./components/VolunteerRegistration";
 import BusinessDashboard from "./components/BusinessDashboard";
 import CreatePickupForm from "./components/CreatePickupForm";
+import Login from "./components/Login";
 
 import "./App.css";
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/registration-vol" component={VolunteerRegistration} />
         <Route path="/dashboard-b" component={BusinessDashboard} />
         <Route path="/create" component={CreatePickupForm} />
+        <Route path="/login" component={Login} />
       </Switch>
     </Router>
   );
