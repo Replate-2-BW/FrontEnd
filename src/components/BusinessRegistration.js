@@ -8,12 +8,12 @@ import axios from "axios";
 // username, password, phoneNumber, biZname
 
 // This code is for form validation through Yup.
-const RegistrationSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(2, "Too short!")
-    .max(16, "Too long!")
-    .required("Required")
-});
+// const RegistrationSchema = Yup.object().shape({
+//   username: Yup.string()
+//     .min(2, "Too short!")
+//     .max(16, "Too long!")
+//     .required("Required")
+// });
 
 // This code contains the state, submit handler, and the registration form itself
 export default function Registration() {

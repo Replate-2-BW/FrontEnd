@@ -1,21 +1,20 @@
-import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 export const ACTION_NAME = "ACTION_NAME";
-export const FETCH_PICKUP_SUCCESS = "FETCH_PICKUP_SUCCESS";
-export const FETCH_PICKUP_START = "FETCH_PICKUP_START";
-export const FETCH_PICKUP_FAILURE = "FETCH_PICKUP_FAILURE";
+export const FETCH_PICKUPS_SUCCESS = "FETCH_PICKUP_SUCCESS";
+export const FETCH_PICKUPS_START = "FETCH_PICKUP_START";
+export const FETCH_PICKUPS_FAILURE = "FETCH_PICKUP_FAILURE";
 
 // This is an async action creator
-export const fetchData = () => dispatch => {
-  dispatch({ type: FETCH_PICKUP_START });
+export const fetchPickups = () => dispatch => {
+  dispatch({ type: FETCH_PICKUPS_START });
   axiosWithAuth()
     .get(`/auth/pickup/`)
     .then(res => {
-      dispatch({ type: FETCH_PICKUP_SUCCESS, payload: res.data });
+      dispatch({ type: FETCH_PICKUPS_SUCCESS, payload: res.data });
       console.log("This is res in fetchData: ", res);
     })
     .catch(err => {
-      dispatch({ type: FETCH_PICKUP_FAILURE, payload: err });
+      dispatch({ type: FETCH_PICKUPS_FAILURE, payload: err });
       console.log("This is err in fetchData: ", err);
     });
 };

@@ -1,7 +1,7 @@
 import {
-  FETCH_PICKUP_START,
-  FETCH_PICKUP_SUCCESS,
-  FETCH_PICKUP_FAILURE
+  FETCH_PICKUPS_START,
+  FETCH_PICKUPS_SUCCESS,
+  FETCH_PICKUPS_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -18,18 +18,18 @@ const initialState = {
 
 export const pickupReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PICKUP_START:
+    case FETCH_PICKUPS_START:
       return {
         ...state,
         isLoading: true
       };
-    case FETCH_PICKUP_SUCCESS:
+    case FETCH_PICKUPS_SUCCESS:
       return {
         ...state,
         pickup: action.payload,
         isLoading: false
       };
-    case FETCH_PICKUP_FAILURE:
+    case FETCH_PICKUPS_FAILURE:
       return {
         ...state,
         error: action.payload,
