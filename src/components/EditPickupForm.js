@@ -1,9 +1,8 @@
-
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form, Field, useFormik } from "formik";
 import { connect } from "react-redux";
-import { fetchPickups } from "../actions";
+import { updatePickup } from "../actions";
 
 // components
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -16,38 +15,51 @@ import BusinessNavBar from "./BusinessNavBar";
 let userID = parseInt(localStorage.getItem("ID"));
 
 const EditPickupForm = props => {
-  console.log("This is props in EditPickupForm: ", props);
+  const [pickup, setPickup] = useState([]);
+  // console.log("This is props in EditPickupForm: ", props);
 
   let history = useHistory();
 
   useEffect(() => {
-    props.fetchPickups();
+    const pickupToUpdate = props.pickupOnProps.pickup.find(
+      item => `${item.id}` === id
+    );
+    if (pickupToUpdate) {
+      setPickup(pickupToUpdate);
+    }
   }, []);
+
+  const { id } = useParams();
+  console.log("This is id in EditPickupForm: ", id);
+
+  console.log(
+    "This is props.pickupOnProps.pickup: ",
+    props.pickupOnProps.pickup
+  );
+
+  console.log("This is pickup: ", pickup);
 
   const formik = useFormik({
     initialValues: {
-      typeOfFood: props.pickupOnProps.typeOfFood,
-      qty: "",
-      preferredPickupTime: "",
+      typeOfFood: pickup.typeOfFood,
+      qty: pickup.qty,
+      preferredPickupTime: pickup.preferredPickupTime,
       bizUserID: userID,
       volUserID: 1
     },
     onSubmit: values => {
-      console.log("This is values: ", values);
       alert(JSON.stringify(values, null, 2));
-      axiosWithAuth()
-        .put("https://replate-2.herokuapp.com/api/auth/pickup/add", values)
-        .then(res => {
-          console.log("This is axios.post.then res: ", res);
-          history.push("/dashboard-b");
-        })
-        .catch(err => console.log("This is axios.post.catch err: ", err));
+      props.updatePickup(id, values);
+      props.history.push("/dashboard-b");
     }
   });
+
+  console.log("This is formik: ", formik);
 
   return (
     <div>
       <h2>Replate</h2>
+      <h3>Edit Pickup Request</h3>
       <Formik onSubmit={values => console.log(values)}>
         <Form onSubmit={formik.handleSubmit}>
           <div>
@@ -56,6 +68,7 @@ const EditPickupForm = props => {
               id="typeOfFood"
               type="text"
               name="typeOfFood"
+              placeholder={pickup.typeOfFood}
               value={formik.typeOfFood}
               onChange={formik.handleChange}
             />
@@ -66,6 +79,7 @@ const EditPickupForm = props => {
               id="qty"
               type="text"
               name="qty"
+              placeholder={pickup.qty}
               value={formik.qty}
               onChange={formik.handleChange}
             />
@@ -76,14 +90,13 @@ const EditPickupForm = props => {
               id="preferredPickupTime"
               type="text"
               name="preferredPickupTime"
+              placeholder={pickup.preferredPickupTime}
               value={formik.preferredPickupTime}
               onChange={formik.handleChange}
             />
           </div>
           <div>
             <button type="submit">Submit</button>
-          </div>
-          <div>
             <button type="delete">Delete</button>
           </div>
         </Form>
@@ -97,10 +110,10 @@ const EditPickupForm = props => {
 
 // This code takes the state in store and sets it to the prop triviaOnProps
 const mapStateToProps = state => {
-  console.log("This is state in BusinessDash: ", state);
+  console.log("This is state in EditPickupForm: ", state);
   return {
     loadingOnProps: state.isLoading,
-    pickupOnProps: state.pickupReducer.pickup,
+    pickupOnProps: state.pickupReducer,
     errorOnProps: state.error
   };
 };
@@ -108,5 +121,5 @@ const mapStateToProps = state => {
 // This code connects
 export default connect(
   mapStateToProps, // function
-  { fetchPickups } // object
+  { updatePickup } // object
 )(EditPickupForm);

@@ -12,3 +12,5 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const RequestDetailPickupForm = props => {
 
 }
+
+export default RequestDetailPickupForm;

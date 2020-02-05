@@ -9,3 +9,5 @@ class BusinessProfile extends Component {
         )
     }
 }
+
+export default BusinessProfile;

@@ -39,8 +39,6 @@ export default function Login() {
     }
   });
 
-  console.log(formik.values);
-
   return (
     <div>
       <h2> Welcome to Replate</h2>
