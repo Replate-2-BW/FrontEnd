@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
+import "./fonts/BalooBhai-Regular.ttf";
 
 const middleware = [thunk, logger];
 
