@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 
-// components
-import CreatePickupForm from "./CreatePickupForm";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+// // components
+// import CreatePickupForm from "./CreatePickupForm";
+// import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 // This component displays the dashboard for the business users.
 // This is the first component the user sees after registering/logging in.

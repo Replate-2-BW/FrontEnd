@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, useFormik } from "formik";
-import axios from "axios";
 
 // components
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -11,10 +10,9 @@ import BusinessNavBar from "./BusinessNavBar";
 // When the Create-A-Pickup button is tapped, the user is presented with the following fields:
 // Type of food, amount of food by count/weight, and a preferred pick up time
 
-let userID = parseInt(localStorage.getItem("ID"));
-
 export default function CreatePickupForm() {
   let history = useHistory();
+  let userID = parseInt(localStorage.getItem("ID"));
 
   const formik = useFormik({
     initialValues: {

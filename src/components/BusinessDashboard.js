@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchPickups } from "../actions";
 
 // components
 import BusinessNavBar from "./BusinessNavBar";
-import EditPickupForm from "./EditPickupForm";
 
 // This component displays the dashboard for the business users.
 // This is the first component the user sees after registering/logging in.
@@ -19,11 +17,6 @@ const BusinessDashboard = props => {
 
   console.log("This is props in BusinessDash: ", props);
 
-  // const handleEdit = e => {
-  //   e.preventDefault();
-  //   props.history.push(`/edit-pickup/${pickup.id}`)
-  // }
-
   return (
     <div>
       <h1>Replate</h1>
@@ -35,7 +28,9 @@ const BusinessDashboard = props => {
               {pickup.typeOfFood}, Amount: {pickup.qty}
             </p>
             <p>Preferred Pickup Time: {pickup.preferredPickupTime}</p>
-            <button onClick={() => props.history.push(`/edit-pickup/${pickup.id}`)}>
+            <button
+              onClick={() => props.history.push(`/edit-pickup/${pickup.id}`)}
+            >
               Edit
             </button>
           </div>
