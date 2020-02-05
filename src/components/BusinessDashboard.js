@@ -5,6 +5,9 @@ import { fetchPickups } from "../actions";
 // components
 import BusinessNavBar from "./BusinessNavBar";
 
+import EditPickupForm from "./EditPickupForm";
+import Header from "./Header";
+
 // This component displays the dashboard for the business users.
 // This is the first component the user sees after registering/logging in.
 // The business dashboard shows the user the pickup requests created and has a nav bar at the bottom, allowing the user to navigate to:
@@ -19,7 +22,7 @@ const BusinessDashboard = props => {
 
   return (
     <div>
-      <h1>Replate</h1>
+      <Header/>
       <h3>Pick-Ups</h3>
       <div>
         {props.pickupOnProps.map(pickup => (
