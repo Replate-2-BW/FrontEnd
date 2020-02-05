@@ -9,3 +9,5 @@ class VolunteerProfile extends Component {
         )
     }
 }
+
+export default VolunteerProfile;

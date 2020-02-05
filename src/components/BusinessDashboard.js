@@ -19,7 +19,10 @@ const BusinessDashboard = props => {
 
   console.log("This is props in BusinessDash: ", props);
 
-  let history = useHistory();
+  // const handleEdit = e => {
+  //   e.preventDefault();
+  //   props.history.push(`/edit-pickup/${pickup.id}`)
+  // }
 
   return (
     <div>
@@ -32,7 +35,7 @@ const BusinessDashboard = props => {
               {pickup.typeOfFood}, Amount: {pickup.qty}
             </p>
             <p>Preferred Pickup Time: {pickup.preferredPickupTime}</p>
-            <button onClick={() => history.push(`/edit-pickup/${pickup.id}`)}>
+            <button onClick={() => props.history.push(`/edit-pickup/${pickup.id}`)}>
               Edit
             </button>
           </div>

@@ -12,3 +12,6 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const VolunteerDashboard = props => {
 
 }
+
+
+export default VolunteerDashboard;
