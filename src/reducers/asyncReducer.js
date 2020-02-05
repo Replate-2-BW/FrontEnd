@@ -1,21 +1,39 @@
-import { FETCH_TOGGLE, FETCH_SUCCESS } from "../actions";
+import {
+  FETCH_PICKUP_START,
+  FETCH_PICKUP_SUCCESS,
+  FETCH_PICKUP_FAILURE
+} from "../actions";
 
-const initialState = {};
+const initialState = {
+  isLoading: false,
+  pickup: [
+    {
+      typeOfFood: "",
+      qty: "",
+      preferredPickupTime: ""
+    }
+  ],
+  error: ""
+};
 
-export const asyncReducer = (state = initialState, action) => {
+export const pickupReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_TOGGLE:
+    case FETCH_PICKUP_START:
       return {
         ...state,
-        isFetching: !state.isFetching,
-        error: action.payload ? action.payload : ""
+        isLoading: true
       };
-    case FETCH_SUCCESS:
+    case FETCH_PICKUP_SUCCESS:
       return {
         ...state,
-        // action.payload
-        isFetching: false,
-        error: ""
+        pickup: action.payload,
+        isLoading: false
+      };
+    case FETCH_PICKUP_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false
       };
     default:
       return state;

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchData } from "../actions";
 
 // components
-import CreatePickupForm from "./CreatePickupForm";
+import BusinessNavBar from "./BusinessNavBar";
+import EditPickupForm from "./EditPickupForm";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 // This component displays the dashboard for the business users.
@@ -28,32 +32,22 @@ const initialState = [
 ];
 
 const BusinessDashboard = props => {
-  const [pickups, setPickups] = useState(initialState);
-  console.log("This is pickups: ", pickups);
+  const [pickups, setPickups] = useState([]);
 
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get("/auth/pickup/:id/biz")
-  //     .then(res => {
-  //       console.log(
-  //         "This is axiosWithAuth.get.then res in BusinessDashboard: ",
-  //         res
-  //       );
-  //     })
-  //     .catch(err => {
-  //       console.log(
-  //         "This is axiosWithAuth.get.catch err in BusinessDashboard: ",
-  //         err
-  //       );
-  //     });
-  // }, []);
+  useEffect(() => {
+    props.fetchData();
+  }, []);
+
+  console.log("This is props in BusinessDash: ", props);
+
+  let history = useHistory();
 
   return (
     <div>
       <h1>Replate</h1>
       <h3>Pick-Ups</h3>
       <div>
-        {pickups.map(pickup => (
+        {props.pickupOnProps.map(pickup => (
           <div className="pickup">
             <p>
               {pickup.typeOfFood}, Amount: {pickup.qty}
@@ -63,9 +57,25 @@ const BusinessDashboard = props => {
           </div>
         ))}
       </div>
-      <CreatePickupForm />
+      <BusinessNavBar />
     </div>
   );
 };
 
-export default BusinessDashboard;
+// export default BusinessDashboard;
+
+// This code takes the state in store and sets it to the prop triviaOnProps
+const mapStateToProps = state => {
+  console.log("This is state in BusinessDash: ", state)
+  return {
+    loadingOnProps: state.isLoading,
+    pickupOnProps: state.pickupReducer.pickup,
+    errorOnProps: state.error
+  };
+};
+
+// This code connects
+export default connect(
+  mapStateToProps, // function
+  { fetchData } // object
+)(BusinessDashboard);
