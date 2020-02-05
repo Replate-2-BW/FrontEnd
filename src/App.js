@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // components
 import VolunteerRegistration from "./components/VolunteerRegistration";
+import BusinessRegistration from "./components/BusinessRegistration";
 import BusinessDashboard from "./components/BusinessDashboard";
 import VolunteerDashboard from "./components/VolunteerDashboard";
 import BusinessRegistration from "./components/BusinessRegistration";
@@ -15,18 +16,21 @@ import BusinessProfile from "./components/BusinessProfile";
 import VolunteerProfile from "./components/VolunteerProfile";
 import Login from "./components/Login";
 
+// styling
 import "./App.css";
 
 function App() {
   return (
     <Router>
       <Switch>
+
+        <Route path="/edit-pickup/:id" component={EditPickupForm} />
+
         <Route exact path="/registration-biz" component={BusinessRegistration} />
         <Route exact path="/registration-vol" component={VolunteerRegistration} />
         <Route exact path="/dashboard-b" component={BusinessDashboard} />
         <Route exact path="/dashboard-vol" component={VolunteerDashboard} />
         <Route exact path="/create" component={CreatePickupForm} />
-        <Route exact path="/edit" component={EditPickupForm} />
         <Route exact path="/available" component={AvailablePickupForm} />
         <Route exact path="/claimed" component={ClaimedPickupForm} />
         <Route exact path="/request" component={RequestDetailPickupForm} />
