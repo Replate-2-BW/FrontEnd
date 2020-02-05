@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, useFormik } from "formik";
@@ -7,6 +8,10 @@ import { fetchPickups } from "../actions";
 // components
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import BusinessNavBar from "./BusinessNavBar";
+
+// The purpose of this component is to allow the business user to create a new pickup request.
+// When the Create-A-Pickup button is tapped, the user is presented with the following fields:
+// Type of food, amount of food by count/weight, and a preferred pick up time
 
 let userID = parseInt(localStorage.getItem("ID"));
 
