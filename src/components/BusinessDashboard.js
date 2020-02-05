@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchPickups } from "../actions";
 
 // components
 import BusinessNavBar from "./BusinessNavBar";
+
 import EditPickupForm from "./EditPickupForm";
 import Header from "./Header";
 
@@ -20,11 +20,6 @@ const BusinessDashboard = props => {
 
   console.log("This is props in BusinessDash: ", props);
 
-  // const handleEdit = e => {
-  //   e.preventDefault();
-  //   props.history.push(`/edit-pickup/${pickup.id}`)
-  // }
-
   return (
     <div>
       <Header/>
@@ -36,7 +31,9 @@ const BusinessDashboard = props => {
               {pickup.typeOfFood}, Amount: {pickup.qty}
             </p>
             <p>Preferred Pickup Time: {pickup.preferredPickupTime}</p>
-            <button onClick={() => props.history.push(`/edit-pickup/${pickup.id}`)}>
+            <button
+              onClick={() => props.history.push(`/edit-pickup/${pickup.id}`)}
+            >
               Edit
             </button>
           </div>
