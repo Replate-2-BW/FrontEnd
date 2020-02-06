@@ -26,7 +26,7 @@ const BusinessDashboard = props => {
       <h3>Pick-Ups</h3>
       <div>
         {props.pickupOnProps.map(pickup => (
-          <div className="pickup">
+          <div key={pickup.id} className="pickup">
             <p>
               {pickup.typeOfFood}, Amount: {pickup.qty}
             </p>
@@ -48,9 +48,9 @@ const BusinessDashboard = props => {
 const mapStateToProps = state => {
   console.log("This is state in BusinessDash: ", state);
   return {
-    loadingOnProps: state.isLoading,
+    loadingOnProps: state.pickupReducer.isLoading,
     pickupOnProps: state.pickupReducer.pickup,
-    errorOnProps: state.error
+    errorOnProps: state.pickupReducer.error
   };
 };
 

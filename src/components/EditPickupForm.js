@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Formik, Form, Field, useFormik } from "formik";
 import { connect } from "react-redux";
-import { updatePickup } from "../actions";
+import { updatePickup, deletePickup } from "../actions";
 
 // components
 import BusinessNavBar from "./BusinessNavBar";
@@ -36,20 +36,22 @@ const EditPickupForm = props => {
       bizUserID: userID,
       volUserID: 1
     },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-      props.updatePickup(id, values);
+    onSubmit: pickup => {
+      alert(JSON.stringify(pickup, null, 2));
+      props.updatePickup(id, pickup);
       props.history.push("/dashboard-b");
     }
   });
 
   const handleDelete = (e, pickup) => {
-    e.preventDefault()
-    axiosWithAuth()
-      .delete(`auth/pickup/${id}/del`, pickup)
-      .then(res => console.log("This is axios.delete res: ", res))
-      .then(props.history.push("/dashboard-b"))
-      .catch(err => console.log("This is axios.delete err: ", err));
+    e.preventDefault();
+    // axiosWithAuth()
+    //   .delete(`auth/pickup/${id}/del`, pickup)
+    //   .then(res => console.log("This is axios.delete res: ", res))
+    //   .then(props.history.push("/dashboard-b"))
+    //   .catch(err => console.log("This is axios.delete err: ", err));
+    props.deletePickup(id, pickup);
+    props.history.push("/dashboard-b");
   };
 
   console.log("This is formik: ", formik);
@@ -95,7 +97,9 @@ const EditPickupForm = props => {
           </div>
           <div>
             <button type="submit">Submit</button>
-            <button onClick={handleDelete} type="delete">Delete</button>
+            <button onClick={handleDelete} type="delete">
+              Delete
+            </button>
           </div>
         </Form>
       </Formik>
@@ -110,14 +114,17 @@ const EditPickupForm = props => {
 const mapStateToProps = state => {
   console.log("This is state in EditPickupForm: ", state);
   return {
-    loadingOnProps: state.isLoading,
+    // loadingOnProps: state.isLoading,
+    // pickupOnProps: state.pickupReducer,
+    // errorOnProps: state.error
+    loadingOnProps: state.pickupReducer.isLoading,
     pickupOnProps: state.pickupReducer,
-    errorOnProps: state.error
+    errorOnProps: state.pickupReducer.error
   };
 };
 
 // This code connects
 export default connect(
   mapStateToProps, // function
-  { updatePickup } // object
+  { updatePickup, deletePickup } // object
 )(EditPickupForm);
