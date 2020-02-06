@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-import { pickupReducer } from "./asyncReducer";
+import { pickupReducer, updateReducer } from "./asyncReducer";
 import { syncReducer } from "./syncReducer";
 
 const rootReducer = combineReducers({
     pickupReducer: pickupReducer,
+    updateReducer: updateReducer,
     sync: syncReducer
 });
 
