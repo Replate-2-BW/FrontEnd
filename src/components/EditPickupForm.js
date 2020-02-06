@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Formik, Form, Field, useFormik } from "formik";
 import { connect } from "react-redux";
-import { updatePickup, deletePickup } from "../actions";
 
 // components
 import BusinessNavBar from "./BusinessNavBar";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { updatePickup, deletePickup } from "../actions";
 
-// The purpose of this component is to allow the business user to create a new pickup request.
-// When the Create-A-Pickup button is tapped, the user is presented with the following fields:
+// The purpose of this component is to allow the business user to edit an existing pickup request.
+// When the Edit button is tapped, the user is presented with the following fields:
 // Type of food, amount of food by count/weight, and a preferred pick up time
+
 
 const EditPickupForm = props => {
   const [pickup, setPickup] = useState([]);
@@ -18,7 +18,7 @@ const EditPickupForm = props => {
   let userID = parseInt(localStorage.getItem("ID"));
 
   useEffect(() => {
-    const pickupToUpdate = props.pickupOnProps.pickup.find(
+    const pickupToUpdate = props.pickupsOnProps.pickup.find(
       item => `${item.id}` === id
     );
     if (pickupToUpdate) {
@@ -26,6 +26,7 @@ const EditPickupForm = props => {
     }
   }, []);
 
+  // This sets the
   const { id } = useParams();
 
   const formik = useFormik({
@@ -36,21 +37,16 @@ const EditPickupForm = props => {
       bizUserID: userID,
       volUserID: 1
     },
-    onSubmit: pickup => {
-      alert(JSON.stringify(pickup, null, 2));
-      props.updatePickup(id, pickup);
+    onSubmit: updatedPickup => {
+      // alert(JSON.stringify(pickup, null, 2));
+      props.updatePickup(id, updatedPickup);
       props.history.push("/dashboard-b");
     }
   });
 
-  const handleDelete = (e, pickup) => {
+  const handleDelete = e => {
     e.preventDefault();
-    // axiosWithAuth()
-    //   .delete(`auth/pickup/${id}/del`, pickup)
-    //   .then(res => console.log("This is axios.delete res: ", res))
-    //   .then(props.history.push("/dashboard-b"))
-    //   .catch(err => console.log("This is axios.delete err: ", err));
-    props.deletePickup(id, pickup);
+    props.deletePickup(id);
     props.history.push("/dashboard-b");
   };
 
@@ -108,17 +104,13 @@ const EditPickupForm = props => {
   );
 };
 
-// export default EditPickupForm;
 
-// This code takes the state in store and sets it to the prop triviaOnProps
+// This code takes the state in store and sets it to the prop pickupOnProps
 const mapStateToProps = state => {
   console.log("This is state in EditPickupForm: ", state);
   return {
-    // loadingOnProps: state.isLoading,
-    // pickupOnProps: state.pickupReducer,
-    // errorOnProps: state.error
     loadingOnProps: state.pickupReducer.isLoading,
-    pickupOnProps: state.pickupReducer,
+    pickupsOnProps: state.pickupReducer,
     errorOnProps: state.pickupReducer.error
   };
 };

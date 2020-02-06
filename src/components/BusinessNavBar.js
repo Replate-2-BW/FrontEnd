@@ -8,7 +8,7 @@ class BusinessNavBar extends Component {
       <span>
         <button onClick={() => history.push("/dashboard-b")}>Home</button>
         <button onClick={() => history.push("/create")}>Create</button>
-        <button>Profile</button>
+        <button onClick={() => history.push("/profile-b")}>Profile</button>
         <button onClick={() => history.push("/login")}>Log Out</button>
       </span>
     );

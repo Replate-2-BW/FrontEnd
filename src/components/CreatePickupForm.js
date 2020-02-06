@@ -1,17 +1,17 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, useFormik } from "formik";
+import { connect } from "react-redux";
 
 // components
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 import BusinessNavBar from "./BusinessNavBar";
+import { createPickup } from "../actions";
 
 // The purpose of this component is to allow the business user to create a new pickup request.
 // When the Create-A-Pickup button is tapped, the user is presented with the following fields:
 // Type of food, amount of food by count/weight, and a preferred pick up time
 
-export default function CreatePickupForm() {
-  let history = useHistory();
+const CreatePickupForm = props => {
   let userID = parseInt(localStorage.getItem("ID"));
 
   const formik = useFormik({
@@ -22,16 +22,11 @@ export default function CreatePickupForm() {
       bizUserID: userID,
       volUserID: 1
     },
-    onSubmit: values => {
-      console.log("This is values: ", values);
-      alert(JSON.stringify(values, null, 2));
-      axiosWithAuth()
-        .post("https://replate-2.herokuapp.com/api/auth/pickup/add", values)
-        .then(res => {
-          console.log("This is axios.post.then res: ", res);
-          history.push("/dashboard-b");
-        })
-        .catch(err => console.log("This is axios.post.catch err: ", err));
+    onSubmit: pickup => {
+      console.log("This is pickup in CreatePickup: ", pickup);
+      // alert(JSON.stringify(values, null, 2));
+      props.createPickup(pickup);
+      props.history.push("/dashboard-b");
     }
   });
 
@@ -81,4 +76,20 @@ export default function CreatePickupForm() {
       <BusinessNavBar />
     </div>
   );
-}
+};
+
+// This code takes the state in store and sets it to the prop pickupOnProps
+const mapStateToProps = state => {
+  console.log("This is state in EditPickupForm: ", state);
+  return {
+    loadingOnProps: state.createReducer.isLoading,
+    pickupOnProps: state.createReducer,
+    errorOnProps: state.createReducer.error
+  };
+};
+
+// This code connects
+export default connect(
+  mapStateToProps, // function
+  { createPickup } // object
+)(CreatePickupForm);

@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
-import { pickupReducer, updateReducer } from "./asyncReducer";
-import { syncReducer } from "./syncReducer";
+import { pickupReducer, createReducer, updateReducer, deleteReducer } from "./asyncReducer";
 
 const rootReducer = combineReducers({
-    pickupReducer: pickupReducer,
-    updateReducer: updateReducer,
-    sync: syncReducer
+  pickupReducer: pickupReducer,
+  createReducer: createReducer,
+  updateReducer: updateReducer,
+  deleteReducer: deleteReducer,
 });
 
 export default rootReducer;
