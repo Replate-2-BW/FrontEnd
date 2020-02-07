@@ -1,5 +1,4 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-export const ACTION_NAME = "ACTION_NAME";
 
 export const FETCH_PICKUPS_START = "FETCH_PICKUP_START";
 export const FETCH_PICKUPS_SUCCESS = "FETCH_PICKUP_SUCCESS";
@@ -17,6 +16,10 @@ export const DELETE_PICKUP_START = "DELETE_PICKUP_START";
 export const DELETE_PICKUP_SUCCESS = "DELETE_PICKUP_SUCCESS";
 export const DELETE_PICKUP_FAILURE = "DELETE_PICKUP_FAILURE";
 
+export const FETCH_PROFILE_START = "FETCH_PROFILE_START";
+export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
+export const FETCH_PROFILE_FAILURE = "FETCH_PROFILE_FAILURE";
+
 // This is an async action creator
 export const fetchPickups = () => dispatch => {
   dispatch({ type: FETCH_PICKUPS_START });
@@ -32,10 +35,24 @@ export const fetchPickups = () => dispatch => {
     });
 };
 
-export const updatePickup = (id, pickup) => dispatch => {
+export const createPickup = pickup => dispatch => {
+  dispatch({ type: POST_PICKUP_START });
+  axiosWithAuth()
+    .post(`auth/pickup/add`, pickup)
+    .then(res => {
+      dispatch({ type: POST_PICKUP_SUCCESS, payload: res.data });
+      console.log("This is res in createPickup: ", res);
+    })
+    .catch(err => {
+      dispatch({ type: POST_PICKUP_FAILURE, payload: err });
+      console.log("This is err in createPickup: ", err);
+    });
+};
+
+export const updatePickup = (id, updatedPickup) => dispatch => {
   dispatch({ type: UPDATE_PICKUP_START });
   axiosWithAuth()
-    .put(`/auth/pickup/${id}`, pickup)
+    .put(`/auth/pickup/${id}`, updatedPickup)
     .then(res => {
       dispatch({ type: UPDATE_PICKUP_SUCCESS, payload: res.data });
       console.log("This is res in updatePickup: ", res);
@@ -46,7 +63,7 @@ export const updatePickup = (id, pickup) => dispatch => {
     });
 };
 
-export const deletePickup = (id, pickup) => dispatch => {
+export const deletePickup = id => dispatch => {
   dispatch({ type: DELETE_PICKUP_START });
   // console.log("This is id in deletePickup action creator: ", id)
   axiosWithAuth()
@@ -58,5 +75,19 @@ export const deletePickup = (id, pickup) => dispatch => {
     .catch(err => {
       dispatch({ type: DELETE_PICKUP_FAILURE, payload: err });
       console.log("This is err in deletePickup: ", err);
+    });
+};
+
+export const fetchProfile = id => dispatch => {
+  dispatch({ type: FETCH_PROFILE_START });
+  axiosWithAuth()
+    .get(`/auth/${id}/user`)
+    .then(res => {
+      dispatch({ type: FETCH_PROFILE_SUCCESS, payload: res.data });
+      console.log("This is res in fetchProfile: ", res);
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_PROFILE_SUCCESS, payload: err });
+      console.log("This is err in fetchProfile", err);
     });
 };

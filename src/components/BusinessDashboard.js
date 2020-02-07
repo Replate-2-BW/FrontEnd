@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchPickups } from "../actions";
 
 // components
 import BusinessNavBar from "./BusinessNavBar";
-
-import EditPickupForm from "./EditPickupForm";
 import Header from "./Header";
 
 // This component displays the dashboard for the business users.
@@ -14,25 +13,29 @@ import Header from "./Header";
 // Profile, create-a-pickup-request, and the user's created pickup requests
 
 const BusinessDashboard = props => {
+  let history = useHistory();
+
   useEffect(() => {
     props.fetchPickups();
   }, []);
 
-  console.log("This is props in BusinessDash: ", props);
+  // console.log("This is props in BusinessDash: ", props);
 
   return (
     <div>
       <Header/>
       <h3>Pick-Ups</h3>
       <div>
-        {props.pickupOnProps.map(pickup => (
+        {props.pickupsOnProps.map(pickup => (
           <div key={pickup.id} className="pickup">
+          {console.log("This is pickup: ", pickup)}
             <p>
               {pickup.typeOfFood}, Amount: {pickup.qty}
             </p>
             <p>Preferred Pickup Time: {pickup.preferredPickupTime}</p>
+            <p>Claimed: {pickup.VolClaimed}</p>
             <button
-              onClick={() => props.history.push(`/edit-pickup/${pickup.id}`)}
+              onClick={() => history.push(`/edit-pickup/${pickup.id}`)}
             >
               Edit
             </button>
@@ -44,12 +47,12 @@ const BusinessDashboard = props => {
   );
 };
 
-// This code takes the state in store and sets it to the prop triviaOnProps
+// This code takes the state in store and sets it to props
 const mapStateToProps = state => {
-  console.log("This is state in BusinessDash: ", state);
+  // console.log("This is state in BusinessDash: ", state);
   return {
     loadingOnProps: state.pickupReducer.isLoading,
-    pickupOnProps: state.pickupReducer.pickup,
+    pickupsOnProps: state.pickupReducer.pickup,
     errorOnProps: state.pickupReducer.error
   };
 };

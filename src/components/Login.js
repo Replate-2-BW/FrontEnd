@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  Formik,
-  useFormik,
-  Form,
-  Field
-} from "formik";
+import { Formik, useFormik, Form, Field } from "formik";
 import axios from "axios";
+
+// components
+import Header from "./Header";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +35,7 @@ export default function Login() {
 
   return (
     <div>
-      <h2> Welcome to Replate</h2>
+      <Header />
       <Formik onSubmit={values => console.log(values)}>
         <Form onSubmit={formik.handleSubmit}>
           <div>
@@ -66,6 +64,7 @@ export default function Login() {
           </div>
         </Form>
       </Formik>
+      <button type="button" onClick={() => history.push("/registration-b")}>Register (Business)</button>
     </div>
   );
 }
