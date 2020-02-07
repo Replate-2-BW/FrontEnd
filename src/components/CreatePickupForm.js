@@ -14,6 +14,8 @@ import { createPickup } from "../actions";
 const CreatePickupForm = props => {
   let userID = parseInt(localStorage.getItem("ID"));
 
+  let history = useHistory();
+
   const formik = useFormik({
     initialValues: {
       typeOfFood: "",
@@ -26,7 +28,7 @@ const CreatePickupForm = props => {
       console.log("This is pickup in CreatePickup: ", pickup);
       // alert(JSON.stringify(values, null, 2));
       props.createPickup(pickup);
-      props.history.push("/dashboard-b");
+      history.push("/dashboard-b");
     }
   });
 

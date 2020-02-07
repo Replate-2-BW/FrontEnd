@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchPickups } from "../actions";
 
@@ -12,6 +13,8 @@ import Header from "./Header";
 // Profile, create-a-pickup-request, and the user's created pickup requests
 
 const BusinessDashboard = props => {
+  let history = useHistory();
+
   useEffect(() => {
     props.fetchPickups();
   }, []);
@@ -30,8 +33,9 @@ const BusinessDashboard = props => {
               {pickup.typeOfFood}, Amount: {pickup.qty}
             </p>
             <p>Preferred Pickup Time: {pickup.preferredPickupTime}</p>
+            <p>Claimed: {pickup.VolClaimed}</p>
             <button
-              onClick={() => props.history.push(`/edit-pickup/${pickup.id}`)}
+              onClick={() => history.push(`/edit-pickup/${pickup.id}`)}
             >
               Edit
             </button>

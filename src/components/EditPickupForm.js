@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Formik, Form, Field, useFormik } from "formik";
 import { connect } from "react-redux";
 
@@ -14,6 +14,8 @@ import { updatePickup, deletePickup } from "../actions";
 
 const EditPickupForm = props => {
   const [pickup, setPickup] = useState([]);
+
+  let history = useHistory();
 
   let userID = parseInt(localStorage.getItem("ID"));
 
@@ -40,14 +42,14 @@ const EditPickupForm = props => {
     onSubmit: updatedPickup => {
       // alert(JSON.stringify(pickup, null, 2));
       props.updatePickup(id, updatedPickup);
-      props.history.push("/dashboard-b");
+      history.push("/dashboard-b");
     }
   });
 
   const handleDelete = e => {
     e.preventDefault();
     props.deletePickup(id);
-    props.history.push("/dashboard-b");
+    history.push("/dashboard-b");
   };
 
   console.log("This is formik: ", formik);
