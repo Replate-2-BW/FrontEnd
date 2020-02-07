@@ -24,7 +24,7 @@ Student used little to no event handlers in the application. Student cannot demo
 ## Senior React Developer (Revisit throughout week to update/modify)
 React Application | HTTP/AJAX | State Management | TeamWork Capabilities |
 | --------------------- | ---------------------- | --------------------- | -------------------- |
-Student failed to deploy a dynamically rendered react application. Static landing page is not incorporated with the overall application. | Complete CRUD operations are not found throughout the application. Student cannot demonstrate that they individually created pages that complete all CDUD operations. Authentication is not handled in the client application. | The state management system has either not been implemented, or is incoherent. State is lost in the process of using the application. Student cannot demonstrate that they individually leveraged or supported the building of the state management system. | TBD |
+React application is deployed and the static landing page is correctly incorporated with the app. | CRUD operations drive the application. Each participating student individually created pages that complete all CRUD operations. Token authentication is handled correctly. | Student has implemented a state management system that makes sense for the project. It is organized well and implemented correctly. State is not lost as user goes through the application. | Pair programmed with the Web UI and Back end Architect |
 
 ---
 

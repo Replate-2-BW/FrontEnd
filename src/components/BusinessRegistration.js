@@ -30,7 +30,7 @@ export default function Registration() {
     },
     onSubmit: values => {
       console.log("This is values: ", values);
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
       axios
         .post("https://replate-2.herokuapp.com/api/register", values)
         .then(res => {
