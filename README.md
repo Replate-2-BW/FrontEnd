@@ -16,12 +16,12 @@
 ## <a name='overview'></a>Overview
 This frontend code base allows users to navigate Replate's web platform. Replate is an app that allows business users can post their excess food to be picked up and volunteer users can sign in to see what food items are available to be picked up, claim 1 or more, and pick them up to be delivered to partner organizations such as homeless shelters, soup kitchens, etc. Business users and volunteers must register and create profiles in order to access functionality of the app. 
 
-## Junior React Developers (Revisit throughout week to update/modify)
+## Junior React Developers
 Applied JavaScript | Intro-to-React| Single Page Application | TeamWork Capabilities | Form Managment
 | --------------------- | ---------------------- | --------------------- | -------------------- | ------------ |
 Student used little to no event handlers in the application. Student cannot demonstrate individual contribution of event handlers in the project. | Student cannot demonstrate individual contribution of reusable React components, or useEffect and useState hooks. | React router was not used, no use of GET requests are found within the application. Student can not demonstrate individual contribution of network calls or React router usage. | TBD | Forms are not controlled by React state, and student cannot defend decision to use uncontrolled components. Performance of the app suffers due to improper form management.
 
-## Senior React Developer (Revisit throughout week to update/modify)
+## Senior React Developer
 React Application | HTTP/AJAX | State Management | TeamWork Capabilities |
 | --------------------- | ---------------------- | --------------------- | -------------------- |
 React application is deployed and the static landing page is correctly incorporated with the app. | CRUD operations drive the application. Each participating student individually created pages that complete all CRUD operations. Token authentication is handled correctly. | Student has implemented a state management system that makes sense for the project. It is organized well and implemented correctly. State is not lost as user goes through the application. | Pair programmed with the Web UI and Back end Architect |
